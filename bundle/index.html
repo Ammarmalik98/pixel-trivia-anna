@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#1c1240">
+<title>Pixel Trivia</title>
+<link rel="icon" type="image/svg+xml" href="./img/icon.svg">
+<link rel="apple-touch-icon" href="./img/icon-180.png">
+<link rel="stylesheet" href="./style.css">
+<!-- Written by `anna-app dev` / `anna-app apps publish`: maps bundled handles to real tool ids. Must load before app.js. -->
+<script src="./anna-tool-ids.js"></script>
+<script src="./app.js" type="module"></script>
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<button id="mute" type="button" aria-label="Toggle sound">SND ON</button>
+<main id="app" aria-live="polite">
+  <div class="boot">
+    <h1>PIXEL<br>TRIVIA</h1>
+    <p class="sub blink">LOADING...</p>
+  </div>
+</main>
+<div id="modal" class="modal" hidden>
+  <div class="box modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle" id="modalBox"></div>
+</div>
+<div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

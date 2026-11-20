@@ -1,0 +1,22 @@
+{
+  "slug": "pixel-trivia",
+  "name": "Pixel Trivia",
+  "version": "1.0.0",
+  "tagline": "Learn bite-size facts from Bit the pixel owl, then prove it in a retro arcade quiz.",
+  "description": "Pixel Trivia is a retro learn-then-quiz game. Every day there's a quest: Bit, the pixel-owl quizmaster, writes a one-minute lesson on a topic (four fact cards, each with a memory trick), then quizzes you on what you just read. Fourteen subjects, from Science, Mythology and History to Video Games, Food and Art, each with eight topics to work through.\n\n**Learn, then play.** Lessons and questions are written fresh by Anna's AI, pitched at your level, and every question is fact-checked by a second, blind pass before you see it. Missed something? Tap WHY for Bit's explanation.\n\n**It remembers what you miss.** Missed questions go to your review pile and come back the next day, then 3, 7 and 14 days later, until you've mastered them.\n\n**Grow.** Earn XP and level up, collect stars in every subject, keep a daily streak and unlock twelve badges. Lessons get harder as you improve.\n\n**Beat your friends.** After any quiz, send a friend a challenge code. They play the exact same questions, and the result lands on both of your rivals boards.\n\nPlus: a classic quick-quiz mode with timer and combos, chiptune sound, keyboard controls (1-4), read-aloud lessons, and Anna's assistant can quiz you right in chat. Your progress is saved to your Anna account.",
+  "category": "education",
+  "logo_file": "assets/pixel-trivia-icon-512.png",
+  "screenshots": [
+    "assets/screenshots/1-home.png",
+    "assets/screenshots/2-lesson.png",
+    "assets/screenshots/3-quiz.png",
+    "assets/screenshots/4-results.png",
+    "assets/screenshots/5-challenge.png"
+  ],
+  "changelog": "First release: daily quests (lesson then quiz), fact-checked AI questions, spaced review, XP, levels, streaks and badges, quick quiz, and friend challenges.",
+  "bundled_executas": {
+    "quizmaster": {
+      "path": "executas/quizmaster"
+    }
+  }
+}

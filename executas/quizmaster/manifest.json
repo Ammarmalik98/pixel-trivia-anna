@@ -1,0 +1,89 @@
+{
+  "display_name": "Bit the Quizmaster (Pixel Trivia)",
+  "version": "0.1.1",
+  "description": "Bit, the quizmaster of the Pixel Trivia app: writes bite-size lessons and multiple-choice quizzes on any of Pixel Trivia's subjects, fact-checks each question with a second blind pass, explains answers and writes end-of-round recaps, all on Anna's LLM via reverse sampling.",
+  "host_capabilities": [
+    "llm.sample"
+  ],
+  "credentials": [],
+  "runtime": {
+    "type": "binary",
+    "binary": {
+      "entrypoint": {
+        "default": "bin/pixel-trivia-quizmaster",
+        "windows-x86_64": "bin/pixel-trivia-quizmaster.exe"
+      },
+      "permissions": {
+        "bin/pixel-trivia-quizmaster": "0o755",
+        "bin/pixel-trivia-quizmaster.exe": "0o755"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "make_lesson",
+      "description": "Write a bite-size lesson (3-5 fact cards, each with a memory hook) on one topic of a subject, pitched at the player's level.",
+      "parameters": [
+        { "name": "subject", "type": "string", "description": "Subject, e.g. Science, Mythology, History, Geography, Music, Film, Television, Video Games, Animals, Sports, Art, Computers, General, Food.", "required": true },
+        { "name": "topic", "type": "string", "description": "Topic within the subject, e.g. 'Norse myths' or 'Space & planets'.", "required": true },
+        { "name": "level", "type": "string", "description": "easy, medium or hard.", "required": false, "default": "medium" },
+        { "name": "cards", "type": "integer", "description": "Number of fact cards, 3 to 5.", "required": false, "default": 4 },
+        { "name": "avoid", "type": "array", "description": "Facts the player already learned, to avoid repeating.", "required": false, "default": [] }
+      ],
+      "timeout": 90
+    },
+    {
+      "name": "make_quiz",
+      "description": "Write multiple-choice questions (one correct answer, three wrong options, a short explanation and a hint each) on a subject and topic. With check=true (default) every question is answered again blind and dropped if the answers disagree. Use this to quiz the user in chat: ask one question at a time and reveal the explanation after they answer.",
+      "parameters": [
+        { "name": "subject", "type": "string", "description": "Subject name.", "required": true },
+        { "name": "topic", "type": "string", "description": "Topic within the subject. Leave empty for a mix across the subject.", "required": false, "default": "" },
+        { "name": "level", "type": "string", "description": "easy, medium or hard.", "required": false, "default": "medium" },
+        { "name": "count", "type": "integer", "description": "Number of questions, 1 to 10.", "required": false, "default": 5 },
+        { "name": "lesson", "type": "string", "description": "Optional lesson text the questions should be based on.", "required": false, "default": "" },
+        { "name": "from_lesson", "type": "integer", "description": "How many questions must come from the lesson (default: all of them when a lesson is given).", "required": false, "default": 0 },
+        { "name": "avoid", "type": "array", "description": "Questions already asked, to avoid repeating.", "required": false, "default": [] },
+        { "name": "check", "type": "boolean", "description": "Fact-check each question with a second blind pass (default true).", "required": false, "default": true }
+      ],
+      "timeout": 90
+    },
+    {
+      "name": "check_quiz",
+      "description": "Fact-check up to 12 multiple-choice questions: answers each one blind and reports which ones match their answer key.",
+      "parameters": [
+        { "name": "questions", "type": "array", "description": "Questions as {q, a, wrong: [three options]}.", "required": true }
+      ],
+      "timeout": 90
+    },
+    {
+      "name": "explain",
+      "description": "Explain in two short sentences why an answer is right, and gently why the player's pick isn't.",
+      "parameters": [
+        { "name": "q", "type": "string", "description": "The question.", "required": true },
+        { "name": "a", "type": "string", "description": "The correct answer.", "required": true },
+        { "name": "chosen", "type": "string", "description": "What the player picked (empty if they ran out of time).", "required": false, "default": "" }
+      ],
+      "timeout": 60
+    },
+    {
+      "name": "recap",
+      "description": "Write a short, upbeat end-of-round recap: one thing the player got right, what to review, what to try next.",
+      "parameters": [
+        { "name": "name", "type": "string", "description": "Player name.", "required": false, "default": "" },
+        { "name": "subject", "type": "string", "description": "Subject played.", "required": false, "default": "" },
+        { "name": "topic", "type": "string", "description": "Topic played.", "required": false, "default": "" },
+        { "name": "right", "type": "integer", "description": "Correct answers.", "required": true },
+        { "name": "total", "type": "integer", "description": "Questions asked.", "required": true },
+        { "name": "got", "type": "array", "description": "Questions answered correctly.", "required": false, "default": [] },
+        { "name": "missed", "type": "array", "description": "Missed questions as 'question -> answer'.", "required": false, "default": [] }
+      ],
+      "timeout": 60
+    },
+    {
+      "name": "ping",
+      "description": "Smoke test; returns pong and the tool version.",
+      "parameters": [],
+      "timeout": 10
+    }
+  ]
+}

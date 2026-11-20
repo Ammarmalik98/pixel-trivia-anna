@@ -1,0 +1,50 @@
+{
+  "slug": "pixel-trivia-quizmaster",
+  "name": "Bit the Quizmaster (Pixel Trivia)",
+  "version": "0.1.1",
+  "executa_type": "tool",
+  "description": "Bit, Pixel Trivia's quizmaster: writes lessons and fact-checked quizzes, explains answers and writes recaps, using Anna's LLM via reverse sampling. Static Go binary.",
+  "tool_id": "tool-dev-pixel-trivia-quizmaster",
+  "type": "go",
+  "manifest_file": "manifest.json",
+  "distribution": {
+    "active": "binary",
+    "profiles": {
+      "local": {
+        "type": "local",
+        "supports_protocol": true
+      },
+      "binary": {
+        "type": "binary",
+        "supports_protocol": true,
+        "binary_artifacts": {
+          "linux-x86_64": {
+            "path": "dist/pixel-trivia-quizmaster-{version}-linux-x86_64.tar.gz",
+            "entrypoint": "bin/pixel-trivia-quizmaster",
+            "format": "tar.gz"
+          },
+          "linux-aarch64": {
+            "path": "dist/pixel-trivia-quizmaster-{version}-linux-aarch64.tar.gz",
+            "entrypoint": "bin/pixel-trivia-quizmaster",
+            "format": "tar.gz"
+          },
+          "darwin-arm64": {
+            "path": "dist/pixel-trivia-quizmaster-{version}-darwin-arm64.tar.gz",
+            "entrypoint": "bin/pixel-trivia-quizmaster",
+            "format": "tar.gz"
+          },
+          "darwin-x86_64": {
+            "path": "dist/pixel-trivia-quizmaster-{version}-darwin-x86_64.tar.gz",
+            "entrypoint": "bin/pixel-trivia-quizmaster",
+            "format": "tar.gz"
+          },
+          "windows-x86_64": {
+            "path": "dist/pixel-trivia-quizmaster-{version}-windows-x86_64.zip",
+            "entrypoint": "bin/pixel-trivia-quizmaster.exe",
+            "format": "zip"
+          }
+        }
+      }
+    }
+  }
+}

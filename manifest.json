@@ -1,0 +1,39 @@
+{
+  "schema": 4,
+  "required_executas": [
+    { "tool_id": "bundled:quizmaster", "version": "latest" }
+  ],
+  "optional_executas": [],
+  "system_prompt_addendum": "The user has Pixel Trivia open: a retro learn-then-quiz game where Bit, a pixel owl, teaches bite-size lessons and then quizzes the player. Its bundled quizmaster tool can write lessons (make_lesson) and fact-checked multiple-choice quizzes (make_quiz) on these subjects: Science, Mythology, History, Geography, Music, Film, Television, Video Games, Animals, Sports, Art, Computers, General, Food. If the user asks to learn about or be quizzed on a topic in chat, call make_quiz (or make_lesson first), then ask ONE question at a time with its four options, wait for their answer, say whether it was right and share the explanation, and keep score. Never reveal an answer before the user replies.",
+  "tags": ["trivia", "quiz", "learning", "education", "game", "retro"],
+  "ui": {
+    "bundle": {
+      "format": "static-spa",
+      "entry": "index.html",
+      "external_origins": []
+    },
+    "views": [
+      {
+        "name": "main",
+        "title": "Pixel Trivia",
+        "default": true,
+        "entry": "index.html",
+        "default_size": { "w": 820, "h": 880 },
+        "min_size": { "w": 360, "h": 560 },
+        "resizable": true,
+        "single_instance": true
+      }
+    ],
+    "form_factors": ["desktop", "mobile"],
+    "browser_permissions": ["web-share"],
+    "csp_overrides": {
+      "img-src": ["'self'", "data:"]
+    },
+    "state_merge": "last_writer_wins"
+  },
+  "dev": {
+    "fixtures": ["fixtures/*.jsonl"],
+    "seed_storage": {},
+    "user_id": 1
+  }
+}

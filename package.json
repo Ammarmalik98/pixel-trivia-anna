@@ -1,0 +1,16 @@
+{
+  "name": "pixel-trivia",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pixel Trivia, an Anna App: learn-then-quiz retro trivia with Bit the pixel owl.",
+  "scripts": {
+    "validate": "anna-app validate --strict",
+    "dev": "anna-app dev --mock-llm fixtures/llm.jsonl",
+    "dev:real": "anna-app dev --storage aps",
+    "prompts": "python scripts/sync_prompts.py",
+    "build:tool": "python scripts/build_binary.py",
+    "test:tool": "python scripts/test_protocol.py --archives",
+    "publish": "anna-app apps publish"
+  }
+}
